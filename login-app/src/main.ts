@@ -10,7 +10,7 @@ const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
     render: (h: any) => h(App),
-    el: "#header",
+    el: "#login",
     router,
     store,
   } as any,

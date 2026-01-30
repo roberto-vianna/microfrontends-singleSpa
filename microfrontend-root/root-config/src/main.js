@@ -7,22 +7,22 @@ import { registerApplication, start } from "single-spa";
 Vue.config.productionTip = false;
 
  registerApplication({
-  name: "header",
-  app: () => System.import("header"),
-  activeWhen: (location) => location.pathname == "/",
+  name: "login",
+  app: () => System.import("login"),
+  activeWhen: (location) => location.pathname == "/login",
 });
 
-registerApplication({
-  name: "menu",
-  app: () => System.import("menu"),
-  activeWhen: (location) => location.pathname == "/",
-});
+// registerApplication({
+//   name: "menu",
+//   app: () => System.import("menu"),
+//   activeWhen: (location) => location.pathname == "/",
+// });
 
-registerApplication({
-  name: "footer",
-  app: () => System.import("footer"),
-  activeWhen: (location) => location.pathname == "/",
-});
+// registerApplication({
+//   name: "footer",
+//   app: () => System.import("footer"),
+//   activeWhen: (location) => location.pathname == "/",
+// });
 
 new Vue({
   router,
