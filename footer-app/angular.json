@@ -42,7 +42,7 @@
               "libraryName": "footer-app",
               "libraryTarget": "umd"
             },
-            "deployUrl": "http://localhost:8083/"
+            "deployUrl": "http://localhost:8084/"
           },
           "configurations": {
             "production": {

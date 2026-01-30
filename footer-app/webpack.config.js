@@ -3,11 +3,11 @@ const singleSpaAngularWebpack = require('single-spa-angular/lib/webpack').defaul
 module.exports = (config, options) => {
   const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
   
-  // Força o Webpack a gerar um módulo SystemJS compatível e ANÔNIMO
+
   singleSpaWebpackConfig.output.libraryTarget = 'system';
   singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpFooterApp';
   singleSpaWebpackConfig.output.library = { type: 'system' };
-  singleSpaWebpackConfig.output.publicPath = 'http://localhost:8083/';
+  singleSpaWebpackConfig.output.publicPath = 'http://localhost:8084/';
 
 singleSpaWebpackConfig.externals = [
   'single-spa',
