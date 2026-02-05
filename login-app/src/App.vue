@@ -1,32 +1,46 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
+  <div id="app" class="bg-zinc-950">
+    <NotificationLogin v-if="notification.visible" :message="notification.message" :type="notification.type"
+      @close="notification.visible = false" />
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
+<script>
+import NotificationLogin from "@/components/NotificationLogin.vue";
+import { EventBus } from "@/utils/eventBus";
 
+export default {
+  components: {
+    NotificationLogin,
+  },
+  data() {
+    return {
+      notification: {
+        message: "",
+        type: "",
+        visible: false,
+      },
+    };
+  },
+  created() {
+    EventBus.$on("show-notification", this.showNotification);
+  },
+  methods: {
+    showNotification(payload) {
+      this.notification = { ...payload, visible: true };
+      setTimeout(() => {
+        this.notification.visible = false;
+      }, payload.duration || 3000);
+    },
+  },
+};
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 </style>

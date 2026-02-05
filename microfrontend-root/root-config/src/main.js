@@ -9,7 +9,7 @@ Vue.config.productionTip = false;
  registerApplication({
   name: "login",
   app: () => System.import("login"),
-  activeWhen: (location) => location.pathname == "/login",
+  activeWhen: (location) => location.pathname.startsWith("/"),
 });
 
 // registerApplication({

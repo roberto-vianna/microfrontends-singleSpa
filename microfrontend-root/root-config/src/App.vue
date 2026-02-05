@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- Placeholder para o microfrontend ativo -->
     <div id="microfrontend-container"></div>
   </div>
 </template>
@@ -10,7 +9,3 @@ export default {
   name: "App",
 };
 </script>
-
-<style>
-/* Adicione estilos globais, se necessário */
-</style>
