@@ -5,7 +5,7 @@ module.exports = (config, options) => {
   
 
   singleSpaWebpackConfig.output.libraryTarget = 'system';
-  singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpFooterApp';
+  singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpClientDashboard';
   singleSpaWebpackConfig.output.library = { type: 'system' };
   singleSpaWebpackConfig.output.publicPath = 'http://localhost:8084/';
 

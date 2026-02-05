@@ -18,11 +18,11 @@ Vue.config.productionTip = false;
 //   activeWhen: (location) => location.pathname == "/",
 // });
 
-// registerApplication({
-//   name: "footer",
-//   app: () => System.import("footer"),
-//   activeWhen: (location) => location.pathname == "/",
-// });
+registerApplication({
+  name: "client-dashboard",
+  app: () => System.import("client-dashboard"),
+  activeWhen: (location) => location.pathname == "/",
+});
 
 new Vue({
   router,

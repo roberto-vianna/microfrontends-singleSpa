@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "footer-app": {
+    "client-dashboard": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/footer-app",
+            "outputPath": "dist/client-dashboard",
             "index": "src/index.html",
             "main": "src/main.single-spa.ts",
             "polyfills": "src/polyfills.ts",
@@ -39,7 +39,7 @@
             "scripts": [],
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",
-              "libraryName": "footer-app",
+              "libraryName": "client-dashboard",
               "libraryTarget": "umd"
             },
             "deployUrl": "http://localhost:8084/"
@@ -82,10 +82,10 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "footer-app:build:production"
+              "browserTarget": "client-dashboard:build:production"
             },
             "development": {
-              "browserTarget": "footer-app:build:development"
+              "browserTarget": "client-dashboard:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "footer-app:build"
+            "browserTarget": "client-dashboard:build"
           }
         },
         "test": {
@@ -117,5 +117,5 @@
       }
     }
   },
-  "defaultProject": "footer-app"
+  "defaultProject": "client-dashboard"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "footer-app",
+  "name": "client-dashboard",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:single-spa:footer-app": "ng build footer-app --configuration production",
-    "serve:single-spa:footer-app": "ng s --project footer-app --disable-host-check --port 8083 --live-reload false"
+    "build:single-spa:client-dashboard": "ng build client-dashboard --configuration production",
+    "serve:single-spa:client-dashboard": "ng s --project client-dashboard --disable-host-check --port 8083 --live-reload false"
   },
   "private": true,
   "dependencies": {
