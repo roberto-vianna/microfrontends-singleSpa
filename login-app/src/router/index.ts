@@ -2,41 +2,28 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import LoginView from "../views/LoginView.vue";
 import SignUpView from "../views/SignUpView.vue";
-import ClienteView from "../views/dashboard/DashboardCliente.vue"
-import BarbeiroView from "../views/dashboard/DashboardBarbeiro.vue"
-
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
+    path: "/login",
     name: "login",
     component: LoginView,
   },
   {
-    path: "/sign-up",
+    path: "/login/sign-up",
     name: "sign-up",
-    component: SignUpView
+    component: SignUpView,
   },
   {
-    path: "/cliente",
-    name: "cliente",
-    component: ClienteView
-  },
-  {
-    path: "/barbeiro",
-    name: "barbeiro",
-    component: BarbeiroView
-  },
-   {
     path: "*",
-    redirect: "/",
+    redirect: "/login",
   },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes,
 });
 

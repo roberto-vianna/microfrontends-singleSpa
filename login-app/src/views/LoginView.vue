@@ -60,7 +60,7 @@
           class="h-4 w-10 ml-2 pt-1">
       </button>
       <p class="text-center text-sm text-color_text mt-6">
-        Não é membro? <router-link to="/sign-up" class="text-primary hover:text-yellow-400">Criar
+        Não é membro? <router-link to="/login/sign-up" class="text-primary hover:text-yellow-400">Criar
           conta</router-link>
       </p>
     </div>
@@ -104,7 +104,7 @@ export default {
       }
 
       if (user.type === "cliente") {
-        this.$router.push("/cliente");
+        window.location.href = "http://localhost:8081/cliente";
       } else if (user.type === "barbeiro") {
         this.$router.push("/barbeiro");
       }
