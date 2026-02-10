@@ -1,6 +1,6 @@
 [build]
+  command = "cd microfrontend-root/root-config && npm install && npm run build"
   publish = "microfrontend-root/root-config/public"
-  command = "npm run build"
 
 [[redirects]]
   from = "/*"
