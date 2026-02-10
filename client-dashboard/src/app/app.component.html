@@ -1,0 +1,3 @@
+<app-notification *ngIf="notification.visible" [message]="notification.message" [type]="notification.type"
+    [duration]="notification.duration" (close)="notification.visible = false" class="fixed z-50"></app-notification>
+<router-outlet></router-outlet>

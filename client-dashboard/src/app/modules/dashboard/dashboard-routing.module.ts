@@ -5,7 +5,6 @@ import { AgendarComponent } from './pages/agendar/agendar.component';
 import { AgendamentosComponent } from './pages/agendamentos/agendamentos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 
-// dashboard-routing.module.ts
 const routes: Routes = [
   { 
     path: '',

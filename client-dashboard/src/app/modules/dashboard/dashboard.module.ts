@@ -7,13 +7,29 @@ import { AgendarComponent } from './pages/agendar/agendar.component';
 import { AgendamentosComponent } from './pages/agendamentos/agendamentos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component'
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [DashboardComponent, SidebarComponent, AgendarComponent, AgendamentosComponent, PerfilComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MatIconModule 
-  ]
+    MatIconModule ,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+
+  ], 
+  exports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  providers: [MatDatepickerModule],
 })
 export class DashboardModule {}

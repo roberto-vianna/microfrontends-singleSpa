@@ -1,4 +1,4 @@
-<nav class="h-screen px-2 bg-background text-white shadow-inset-primary flex flex-col sticky top-0">
+<nav class="h-screen px-3 bg-background text-white shadow-inset-primary flex flex-col sticky top-0">
     <div class="flex items-center ml-4 pt-4">
         <div
             class="bg-gray-920 mr-2 border border-solid border-primary shadow-md shadow-yellow-500/50 p-1 rounded-full size-8 flex items-center justify-center">
@@ -16,13 +16,13 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=calendar_clock" />
     </div>
-    <div class="mt-8 flex-grow">
+    <div class="mt-8 flex-grow pl-2">
         <div *ngFor="let item of menuItems"
             class="flex items-center p-4 gap-4 cursor-pointer transition-all duration-300 rounded-lg"
-            [ngClass]="{ 'text-color_text': activeRoute !== item.route, 'text-yellow-400 bg-gradient-to-r from-[rgba(255,186,0,0.3)] via-[rgba(255,186,0,0.1)] to-transparent ': activeRoute === item.route }"
+            [ngClass]="{ 'text-color_text': activeRoute !== item.route, 'text-primary bg-gradient-to-r from-[rgba(255,186,0,0.3)] via-[rgba(255,186,0,0.1)] to-transparent shadow-inset-gradient': activeRoute === item.route }"
             [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="material-icons text-xl"
-                [ngClass]="{ 'text-color_text': activeRoute !== item.route, 'text-yellow-400': activeRoute === item.route }">
+                [ngClass]="{ 'text-color_text': activeRoute !== item.route, 'text-primary': activeRoute === item.route }">
                 {{ item.icon }}
             </i>
             <span class="text-base font-medium">{{ item.label }}</span>
@@ -39,7 +39,7 @@
             </div>
             <div>
                 <div class="text-md font-bold">Roberto Viana</div>
-                <div class="text-xs text-primary">MEMBRO VIP</div>
+                <div class="text-[10px] pt-0.5 text-primary">MEMBRO VIP</div>
             </div>
         </div>
         <button
