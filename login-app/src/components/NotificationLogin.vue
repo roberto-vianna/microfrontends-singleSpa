@@ -1,6 +1,6 @@
 <template>
     <div v-if="visible"
-        :class="['fixed top-4 right-4 max-w-xs outline-2 px-4 rounded-lg transition-transform duration-300', notificationClass]"
+        :class="['fixed top-4 right-4 max-w-xs outline-2 px-4 py-2 rounded-lg transition-transform duration-300', notificationClass]"
         @click="closeNotification">
         <div class="flex items-center">
             <div :class="iconClass" class=" mr-3 flex items-center justify-center rounded-full bg-opacity-25">
@@ -27,7 +27,7 @@
                 </svg>
 
             </div>
-            <p class="text-md font-medium">{{ message }}</p>
+            <p class="text-md font-medium my-0">{{ message }}</p>
         </div>
     </div>
 </template>

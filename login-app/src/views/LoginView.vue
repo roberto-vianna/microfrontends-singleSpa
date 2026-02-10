@@ -114,6 +114,10 @@ export default {
     },
     googleLogin() {
       this.email = 'jrviana@gmail.com', this.password = '123'
+      EventBus.$emit("show-notification", {
+        message: "Dados preenchidos com sua conta Google, clique em 'Entrar' para continuar!",
+        type: "success",
+      });
     }
   },
 };
