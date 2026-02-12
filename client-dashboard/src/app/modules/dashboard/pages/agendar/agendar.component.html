@@ -5,7 +5,6 @@
         <div class="flex items-center mb-8">
             <div class="flex-grow h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
         </div>
-
         <div class="grid grid-cols-[70%,30%] gap-4">
             <div>
                 <div class="mb-8">
@@ -75,12 +74,13 @@
                                     Horários disponíveis
                                 </h3>
                             </div>
-                            <div class="grid grid-cols-3 gap-4 ">
-
-                                <div *ngFor="let time of availableTimes; let i = index" (click)="selectTime(i)"
-                                    [ngClass]="{ 'border border-solid border-primary shadow-md shadow-yellow-500/50': selectedTime === i, 'bg-background': selectedTime !== i }"
-                                    class="p-2 text-center  rounded-lg cursor-pointer text-sm text-gray-400 ">
-                                    {{ time }}
+                            <div class="grid grid-cols-3 gap-4">
+                                <div *ngFor="let slot of availableTimes; let i = index"
+                                    (click)="!slot.isDisabled && selectTime(i)" [ngClass]="{'border border-solid border-primary shadow-md shadow-yellow-500/50': selectedTime === i,
+                                    'bg-zinc-700 text-gray-500 cursor-not-allowed': slot.isDisabled,
+                                    'bg-background text-gray-400 cursor-pointer': !slot.isDisabled
+                                    }" class="p-2 text-center rounded-lg text-sm">
+                                    {{ slot.time }}
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
 
-                        {{ selectedTime !== null ? availableTimes[selectedTime] : 'Horário' }}
+                        {{ selectedTime !== null ? availableTimes[selectedTime]?.time : 'Horário' }}
                     </p>
                 </div>
 
