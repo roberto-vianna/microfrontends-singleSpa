@@ -1,5 +1,5 @@
-<div class="min-h-screen">
-    <div class="flex-grow p-4">
+<div class="min-h-screen px-4 pb-4">
+    <div class="flex-grow">
         <div class="flex items-center justify-between">
             <div>
                 <h1 class="text-4xl mt-0 font-bold mb-0 text-primary">Meus Agendamentos</h1>
@@ -93,8 +93,8 @@
             <div *ngIf="historico.length === 0" class="text-gray-400 text-center">
                 Nenhum histórico disponível.
             </div>
-            <div class="space-y-4 px-4 mb-8">
-                <div *ngFor="let item of historico"
+            <div class="space-y-4 px-4 ">
+                <div *ngFor="let item of  (mostrarTudo ? historico : historico.slice(0, 3))"
                     class="flex items-center justify-between bg-background p-4 rounded-lg">
                     <div>
                         <p class="text-gray-400 text-sm mt-0">
@@ -139,6 +139,21 @@
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="text-center mb-8">
+
+                <button (click)="alternarHistorico()" class="text-white font-bold bg-transparent border-none">
+                    <svg *ngIf="!mostrarTudo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6 bg-transparent">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                    </svg>
+                    <svg *ngIf="mostrarTudo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6 bg-transparent">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5" />
+                    </svg>
+                </button>
             </div>
         </div>
     </div>

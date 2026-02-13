@@ -1,5 +1,5 @@
-<div class="min-h-screen flex flex-col">
-    <div class="flex-grow bg-black text-white p-4">
+<div class="min-h-screen px-4 pb-6">
+    <div class="flex-grow">
         <h1 class="text-4xl mt-0 font-bold mb-0 text-primary">Novo Agendamento</h1>
         <p class="text-gray-400 mb-6 mt-2">Experiência exclusiva. Selecione os detalhes do seu atendimento.</p>
         <div class="flex items-center mb-8">
@@ -70,9 +70,12 @@
                         </div>
                         <div>
                             <div>
-                                <h3 class="text-sm text-center font-semibold text-gray-400 mb-4">
+                                <h3 class=" text-center font-semibold text-white mb-4">
                                     Horários disponíveis
                                 </h3>
+                                <p *ngIf="selectedBarber === null" class="text-color_text text-center text-sm">
+                                    Primeiro selecione um Barbeiro!
+                                </p>
                             </div>
                             <div class="grid grid-cols-3 gap-4">
                                 <div *ngFor="let slot of availableTimes; let i = index"

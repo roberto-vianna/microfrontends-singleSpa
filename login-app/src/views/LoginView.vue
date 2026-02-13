@@ -16,14 +16,14 @@
       <form @submit.prevent="handleLogin" class="w-full">
         <div class="mb-4">
           <label for="email" class=" text-primary block text-start text-md font-medium">Email</label>
-          <input type="email" id="email" v-model="email" placeholder="exemplo@email.com" class="w-full pl-1 py-2.5 mt-2 text-white  rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border
+          <input type="email" id="email" v-model="email" placeholder="exemplo@email.com" class="w-full pl-1 py-2.5 mt-2 text-white  rounded-lg bg-zinc-700 focus:ring-1 focus:ring-yellow-500 focus:outline-none box-border
           " />
         </div>
         <div class="mb-2">
           <label for="password" class="text-primary block text-start text-md font-medium">Senha</label>
           <div class="relative">
             <input :type="passwordVisible ? 'text' : 'password'" id="password" v-model="password" placeholder="••••••••"
-              class="w-full pl-1 py-2.5 mt-2 mb-0 text-white rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border " />
+              class="w-full pl-1 py-2.5 mt-2 mb-0 text-white rounded-lg bg-zinc-700 focus:ring-1 focus:ring-yellow-500 focus:outline-none box-border " />
             <button type="button" @click="togglePasswordVisibility"
               class="absolute right-3 top-4 text-color_text bg-transparent border-none focus:outline-none">
               <svg v-if="passwordVisible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -69,7 +69,7 @@
 
 <script>
 import { EventBus } from "@/utils/eventBus";
-import { findUser } from "@/utils/localStorage";
+import { findUser, setLoggedUser } from "@/utils/localStorage";
 
 export default {
   data() {
@@ -104,8 +104,10 @@ export default {
       }
 
       if (user.type === "cliente") {
+        setLoggedUser(this.email);
         window.location.href = "http://localhost:8081/cliente";
       } else if (user.type === "barbeiro") {
+        setLoggedUser(this.email);
         this.$router.push("/barbeiro");
       }
     },

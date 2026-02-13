@@ -10,6 +10,7 @@ import { NotificationService } from 'src/app/components/notification/notificatio
 export class AgendamentosComponent implements OnInit {
   upcomingAppointments: any[] = [];
   historico: any[] = [];
+  mostrarTudo: boolean = false;
 
   constructor( 
     private router: Router, 
@@ -21,6 +22,9 @@ export class AgendamentosComponent implements OnInit {
     this.carregarAgendamentos();
   }
 
+  alternarHistorico(): void {
+    this.mostrarTudo = !this.mostrarTudo; 
+  }
   novoAgendamento(): void {
     this.router.navigate(['/dashboard/agendar']);
   }
