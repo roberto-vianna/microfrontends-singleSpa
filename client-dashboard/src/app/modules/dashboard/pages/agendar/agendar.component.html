@@ -79,7 +79,7 @@
                             </div>
                             <div class="grid grid-cols-3 gap-4">
                                 <div *ngFor="let slot of availableTimes; let i = index"
-                                    (click)="!slot.isDisabled && selectTime(i)" [ngClass]="{'border border-solid border-primary shadow-md shadow-yellow-500/50': selectedTime === i,
+                                    (click)="!slot.isDisabled && selectTime(i)" [ngClass]="{'border border-solid border-primary shadow-md shadow-yellow-500/50 bg-black': selectedTime === i,
                                     'bg-zinc-700 text-gray-500 cursor-not-allowed': slot.isDisabled,
                                     'bg-background text-gray-400 cursor-pointer': !slot.isDisabled
                                     }" class="p-2 text-center rounded-lg text-sm">

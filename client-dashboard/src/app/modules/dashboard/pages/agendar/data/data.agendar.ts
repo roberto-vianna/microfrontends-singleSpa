@@ -49,13 +49,16 @@ export const services = [
   ];
 
 export const availableTimes = [
-  { time: '07:00', isDisabled: false },
-  { time: '08:20', isDisabled: false },
-  { time: '10:00', isDisabled: false },
-  { time: '11:40', isDisabled: false },
-  { time: '15:20', isDisabled: false },
-  { time: '17:00', isDisabled: false },
-  { time: '18:20', isDisabled: false },
-  { time: '19:00', isDisabled: false },
-  { time: '22:20', isDisabled: false },
+  { time: '08:00', isDisabled: false },
+  { time: '08:50', isDisabled: false },
+  { time: '09:40', isDisabled: false },
+  { time: '10:35', isDisabled: false },
+  { time: '11:20', isDisabled: false },
+  { time: '14:00', isDisabled: false },
+  { time: '14:50', isDisabled: false },
+  { time: '15:40', isDisabled: false },
+  { time: '16:35', isDisabled: false },
+  { time: '17:20', isDisabled: false },
+  { time: '18:10', isDisabled: false },
+  { time: '19:15', isDisabled: false },
 ];

@@ -108,7 +108,7 @@ export default {
         window.location.href = "http://localhost:8081/cliente";
       } else if (user.type === "barbeiro") {
         setLoggedUser(this.email);
-        this.$router.push("/barbeiro");
+        window.location.href = "http://localhost:8081/barbeiro";
       }
     },
     togglePasswordVisibility() {

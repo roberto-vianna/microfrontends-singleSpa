@@ -2,7 +2,7 @@
     <div class="flex-grow">
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-4xl mt-0 font-bold mb-0 text-primary">Meus Agendamentos</h1>
+                <h1 class="text-4xl my-0 font-bold text-primary">Meus Agendamentos</h1>
                 <p class="text-gray-400 mb-6 mt-2">Gerencie suas visitas e consulte o histórico.</p>
             </div>
             <button (click)="novoAgendamento()"
@@ -30,7 +30,6 @@
                             {{ agendamento.barber === 'Rafael Santos' ? 'MASTER' : 'BARBER' }}
                         </span>
                     </div>
-
                     <div>
                         <p class="text-white font-bold text-l m-0">{{ agendamento.barber }}</p>
                         <p class="text-sm text-color_text flex items-center font-mono">
@@ -141,8 +140,8 @@
                 </div>
             </div>
             <div class="text-center mb-8">
-
-                <button (click)="alternarHistorico()" class="text-white font-bold bg-transparent border-none">
+                <button (click)="alternarHistorico()"
+                    class="text-white font-bold bg-transparent border-none cursor-pointer">
                     <svg *ngIf="!mostrarTudo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor" class="size-6 bg-transparent">
                         <path stroke-linecap="round" stroke-linejoin="round"

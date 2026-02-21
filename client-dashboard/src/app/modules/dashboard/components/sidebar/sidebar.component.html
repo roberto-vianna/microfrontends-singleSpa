@@ -16,7 +16,7 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=calendar_clock" />
     </div>
-    <div class="mt-8 flex-grow pl-2">
+    <div class="mt-8 flex-grow pl-2 space-y-2">
         <div *ngFor="let item of menuItems"
             class="flex items-center p-4 gap-4 cursor-pointer transition-all duration-300 rounded-lg"
             [ngClass]="{ 'text-color_text': activeRoute !== item.route, 'text-primary bg-gradient-to-r from-[rgba(255,186,0,0.3)] via-[rgba(255,186,0,0.1)] to-transparent shadow-inset-gradient': activeRoute === item.route }"
@@ -29,11 +29,11 @@
         </div>
     </div>
     <div class="mt-auto pb-4 px-6">
-        <div class="flex items-center mb-6">
+        <div class="flex items-center mb-4">
             <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
         </div>
         <div class="flex items-center ml-4 gap-4 mb-4">
-            <div class="bg-white rounded-full size-10 flex items-center justify-center">
+            <div class=" rounded-full size-10 flex items-center justify-center">
                 <img src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
                     alt="User Avatar" class="size-10 rounded-full" />
             </div>

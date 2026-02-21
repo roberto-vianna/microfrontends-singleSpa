@@ -19,6 +19,13 @@ registerApplication({
   },
 });
 
+registerApplication({
+  name: "barber-dashboard",
+  app: () => System.import("barber-dashboard"), activeWhen: (location) => {
+    return location.pathname.startsWith("/barbeiro");
+  },
+});
+
 new Vue({
   render: (h) => h(App),
 }).$mount("#app");

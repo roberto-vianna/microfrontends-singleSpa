@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { barbers } from '../agendar/data/data.agendar';
 import { NotificationService } from 'src/app/components/notification/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './agendamentos.component.html',
