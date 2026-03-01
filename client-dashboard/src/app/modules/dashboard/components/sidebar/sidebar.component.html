@@ -38,8 +38,9 @@
                     alt="User Avatar" class="size-10 rounded-full" />
             </div>
             <div>
-                <div class="text-md font-bold">Roberto Viana</div>
-                <div class="text-[10px] pt-0.5 text-primary">MEMBRO VIP</div>
+                <div class="text-md font-bold"> {{ loggedUser?.fullName }}</div>
+                <div class="text-[10px] pt-0.5 text-primary">{{ loggedUser?.type === 'cliente' ? "MEMBRO VIP" :
+                    'MASTER'}}</div>
             </div>
         </div>
         <button

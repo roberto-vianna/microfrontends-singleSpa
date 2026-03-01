@@ -1,30 +1,38 @@
 <div class="min-h-scree px-4 pb-6">
-    <div class="flex-grow">
+    <div class="mb-6">
         <h1 class="text-4xl mt-0 font-bold mb-0 text-primary">Perfil do Usuário</h1>
-        <p class="text-gray-400 mb-6 mt-2">Gerencie suas informações pessoais e preferências.</p>
-        <div class="bg-background p-6 rounded-lg flex gap-8">
-            <div class="flex flex-col items-center justify-center px-4 ">
-                <div>
-                    <div class="relative">
-                        <img src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
-                            alt="User Avatar"
-                            class="size-32 rounded-full  border border-solid border-primary shadow-md shadow-yellow-500/50" />
-                        <button class="absolute bottom-0 right-0 bg-yellow-500 text-black p-1 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                            </svg>
+        <p class="text-gray-400 mt-2">Gerencie suas informações pessoais e preferências.</p>
+    </div>
+    <div class="mb-6 flex-grow h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent">
+    </div>
 
-                        </button>
-                    </div>
-                    <div class="text-center mb-4 ">
-                        <p class="text-xl font-bold my-0">{{ user.fullName }}</p>
-                        <span class="text-yellow-500 text-xs font-semibold">CLIENTE VIP</span>
-                    </div>
+    <div class="rounded-2xl bg-background p-6 ">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 ">
+
+            <div class="flex flex-col items-center text-center">
+                <div class="relative">
+                    <img src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
+                        alt="User Avatar" class="size-36 rounded-full" />
+                    <button class="absolute bottom-0 right-0 bg-yellow-500 text-black p-1 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                    </button>
                 </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-2xl font-bold my-0 truncate max-w-[200px]">
+                        {{ user.fullName }}
+                    </p>
+                </div>
+                <div class="my-1 text-sm font-bold text-primary">
+                    CLIENTE VIP
+                </div>
+
                 <span
-                    class="border border-solid border-primary shadow-md shadow-yellow-500/50 bg-transparent text-white text-xs font-bold px-2 py-1 rounded-full flex">
+                    class="border border-solid border-primary shadow-sm shadow-yellow-500/50 bg-transparent text-white text-xs font-bold px-2 py-1 rounded-full flex">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="size-4 mr-1 text-green-600">
                         <path fill-rule="evenodd"
@@ -34,10 +42,10 @@
                     VERIFICADO
                 </span>
             </div>
-            <div class="flex-grow px-6">
-                <form class="grid grid-cols-1 gap-y-6" (submit)="updateProfile()">
+            <div class="space-y-6">
+                <form (submit)="updateProfile()">
                     <div>
-                        <h2 class="text-base font-semibold mb-2 flex items-center">
+                        <h2 class="text-lg font-semibold mb-2 flex items-center gap-4 mt-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-6 text-primary">
                                 <path fill-rule="evenodd"
@@ -46,25 +54,31 @@
                             </svg>
                             Informações Pessoais
                         </h2>
-                        <div class="flex items-center mb-4">
+                        <div class="flex items-center">
                             <div class="flex-grow h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent">
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-x-12 px-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                             <div>
                                 <label class="block text-xs text-white pb-2">Nome Completo</label>
                                 <input type="text" [(ngModel)]="user.fullName" name="fullName"
-                                    class="w-full px-2 py-1.5 rounded-lg bg-zinc-800 text-color_text focus:ring-1 focus:ring-primary focus:outline-none" />
+                                    class="w-full box-border px-2 py-2 rounded-lg bg-zinc-800 text-color_text focus:ring-1 focus:ring-primary focus:outline-none" />
+                            </div>
+                            <div>
+                                <label class="block text-xs text-white pb-2">Telefone</label>
+                                <input type="tel" [(ngModel)]="user.telefone" name="telefone"
+                                    class="w-full box-border px-2 py-2 rounded-lg bg-zinc-800 text-color_text focus:ring-1 focus:ring-primary focus:outline-none" />
                             </div>
                             <div>
                                 <label class="block text-xs text-white pb-2">Endereço de E-mail</label>
                                 <input type="email" [(ngModel)]="user.email" name="email"
-                                    class="w-full px-2 py-1.5 rounded-lg bg-zinc-800 text-color_text focus:ring-1 focus:ring-primary focus:outline-none" />
+                                    class="w-full box-border px-2 py-2 rounded-lg bg-zinc-800 text-color_text focus:ring-1 focus:ring-primary focus:outline-none" />
                             </div>
                         </div>
                     </div>
+
                     <div>
-                        <h2 class="text-base font-semibold mb-2 flex items-center gap-2">
+                        <h2 class="text-lg font-semibold mb-2 mt-8 flex items-center gap-4">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-6 text-primary">
                                 <path fill-rule="evenodd"
@@ -73,29 +87,27 @@
                             </svg>
                             Segurança
                         </h2>
-                        <div class="flex items-center mb-4">
+                        <div class="flex items-center">
                             <div class="flex-grow h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent">
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-x-12 px-4 mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 mb-6">
                             <div class="col-span-1">
                                 <label class="block text-xs text-white pb-2">Senha Atual</label>
                                 <input type="password" [(ngModel)]="user.password" name="password"
-                                    class="w-full px-2 py-1.5 rounded-lg bg-zinc-800 text-gray-300 focus:ring-1 focus:ring-primary focus:outline-none"
+                                    class="w-full box-border px-2 py-2 rounded-lg bg-zinc-800 text-gray-300 focus:ring-1 focus:ring-primary focus:outline-none"
                                     placeholder="••••••••" readonly />
                             </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-x-12 px-4">
                             <div>
                                 <label class="block text-xs text-white pb-2">Nova Senha</label>
                                 <input type="password" [(ngModel)]="newPassword" name="newPassword"
-                                    class="w-full px-2 py-1.5 rounded-lg bg-zinc-800 text-gray-300 focus:ring-1 focus:ring-primary focus:outline-none"
+                                    class="w-full box-border px-2 py-2 rounded-lg bg-zinc-800 text-gray-300 focus:ring-1 focus:ring-primary focus:outline-none"
                                     placeholder="••••••••" />
                             </div>
                             <div>
                                 <label class="block text-xs text-white pb-2">Confirmar Nova Senha</label>
                                 <input type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword"
-                                    class="w-full px-2 py-1.5 rounded-lg bg-zinc-800 text-gray-300 focus:ring-1 focus:ring-primary focus:outline-none"
+                                    class="w-full box-border px-2 py-2 rounded-lg bg-zinc-800 text-gray-300 focus:ring-1 focus:ring-primary focus:outline-none"
                                     placeholder="••••••••" />
                             </div>
                         </div>

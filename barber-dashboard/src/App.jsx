@@ -1,9 +1,14 @@
 import DashboardLayout from "./layout/DashboardLayout";
 import AppRouter from "./routes/Router";
+import { NotificationProvider } from "./notifications/NotificationProvider";
 
 const App = () => {
   return (
-    <DashboardLayout> <AppRouter /> </DashboardLayout>
+    <NotificationProvider>
+      <DashboardLayout>
+        <AppRouter />
+      </DashboardLayout>
+    </NotificationProvider>
   );
 };
 

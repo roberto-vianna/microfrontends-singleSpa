@@ -1,14 +1,14 @@
 <template>
   <div class="flex items-center justify-center min-h-screen">
-    <div class="bg-background text-white p-8 rounded-xl shadow-inset-primary w-80 max-w-sm max-h-[82vh]">
-      <div class="text-center mb-6">
+    <div class="bg-background text-white px-6 py-4 rounded-xl shadow-inset-primary w-80 max-w-sm max-h-[86vh]">
+      <div class="text-center mb-4">
         <h1 class="text-3xl font-semibold mb-1 mt-0">Crie sua conta</h1>
-        <p class="text-color_text text-sm mt-1">Junte-se ao clube exclusivo. Agende ou gerencie.</p>
+        <p class="text-color_text text-sm mt-1 ">Junte-se ao clube exclusivo. Agende ou gerencie.</p>
       </div>
 
-      <div class="flex justify-between mb-6 p-1 bg-zinc-950 rounded-lg">
+      <div class="flex justify-between mb-4 p-1 bg-zinc-950 rounded-lg">
         <button @click="selectButton('cliente')" :class="[
-          'flex items-center justify-center w-[48%] py-2 px-4 font-semibold rounded-lg transition duration-300 border-none',
+          'size-6 flex items-center justify-center w-[48%] py-2 px-4 font-semibold rounded-lg transition duration-300 border-none',
           selectedButton === 'cliente' ? 'bg-primary text-black' : 'bg-transparent text-white hover:bg-gray-700'
         ]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
@@ -20,7 +20,7 @@
           Cliente
         </button>
         <button @click="selectButton('barbeiro')" :class="[
-          'flex items-center justify-center w-[48%] py-2 px-4 font-semibold rounded-lg transition duration-300 border-none',
+          'size-6 flex items-center justify-center w-[48%] py-2 px-4 font-semibold rounded-lg transition duration-300 border-none',
           selectedButton === 'barbeiro' ? 'bg-primary text-black' : 'bg-transparent text-white hover:bg-gray-700'
         ]">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -34,21 +34,25 @@
       </div>
       <form @submit.prevent="handleSignUp" class="w-full">
         <div class="mb-4">
-          <label for="fullName" class="text-primary block text-md font-medium">Nome Completo</label>
+          <label for="fullName" class="text-primary block text-sm font-medium">Nome Completo</label>
           <input type="text" id="fullName" v-model="fullName" placeholder="Ex: João da Silva"
-            class="w-full pl-1 py-2.5 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border" />
+            class="w-full pl-1 py-2 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border" />
         </div>
         <div class="mb-4">
-          <label for="email" class="text-primary block text-md font-medium">E-mail</label>
+          <label for="email" class="text-primary block text-sm font-medium">E-mail</label>
           <input type="email" id="email" v-model="email" placeholder="seu@email.com"
-            class="w-full pl-1 py-2.5 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border" />
+            class="w-full pl-1 py-2 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border" />
         </div>
-
+        <div class="mb-4">
+          <label for="telefone" class="text-primary block text-sm font-medium">Telefone</label>
+          <the-mask type="tel" id="telefone" mask="(##) #####-####" v-model="telefone" placeholder="(xx) xxxxx-xxxx"
+            class="w-full pl-1 py-2 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border"></the-mask>
+        </div>
         <div class="mb-8">
-          <label for="password" class="text-primary block text-md font-medium">Senha</label>
+          <label for="password" class="text-primary block text-sm font-medium">Senha</label>
           <div class="relative">
             <input :type="passwordVisible ? 'text' : 'password'" id="password" v-model="password" placeholder="••••••••"
-              class="w-full pl-1 py-2.5 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border" />
+              class="w-full pl-1 py-2 mt-2 text-white border rounded-lg bg-zinc-700 focus:ring-2 focus:ring-yellow-500 focus:outline-none box-border" />
             <button type="button" @click="togglePasswordVisibility"
               class="absolute right-3 top-4 text-color_text bg-transparent border-none focus:outline-none">
               <svg v-if="passwordVisible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -67,17 +71,17 @@
         </div>
 
         <button type="submit"
-          class="w-full py-2.5 px-4 bg-primary text-black font-semibold rounded-lg hover:bg-yellow-400 transition duration-300 border-none shadow-sm shadow-yellow-500/50">
+          class="w-full py-2 px-4 bg-primary text-black font-semibold rounded-lg hover:bg-yellow-400 transition duration-300 border-none shadow-sm shadow-yellow-500/50">
           Finalizar Cadastro →
         </button>
       </form>
 
-      <p class="text-center text-sm text-color_text mt-6">
+      <p class="text-center text-sm text-color_text">
         Já possui cadastro?
         <router-link to="/login" class="text-primary hover:text-yellow-400">Fazer Login</router-link>
       </p>
 
-      <p class="text-center text-xs text-gray-500 mt-4">
+      <p class="text-center text-xs text-gray-500">
         Ao clicar em cadastrar, você concorda com nossos
         <a href="#" class="text-white hover:text-yellow-400">Termos de Serviço</a> e
         <a href="#" class="text-white hover:text-yellow-400">Política de Privacidade</a>.
@@ -89,13 +93,18 @@
 <script>
 import { addUser, isEmailTaken } from "@/utils/localStorage";
 import { EventBus } from "@/utils/eventBus";
+import { TheMask } from "vue-the-mask";
 
 export default {
+  components: {
+    TheMask,
+  },
   data() {
     return {
       selectedButton: 'cliente',
       fullName: '',
       email: '',
+      telefone: '',
       password: '',
       passwordVisible: false,
       notification: {
@@ -107,7 +116,7 @@ export default {
   },
   methods: {
     handleSignUp() {
-      if (!this.fullName || !this.email || !this.password) {
+      if (!this.fullName || !this.email || !this.password || !this.telefone) {
         EventBus.$emit("show-notification", {
           message: "Por favor, preencha todos os campos!",
           type: "alert",
@@ -124,10 +133,12 @@ export default {
       const newUser = {
         fullName: this.fullName,
         email: this.email,
+        telefone: this.telefone,
         password: this.password,
         type: this.selectedButton,
       };
       addUser(newUser);
+      
       EventBus.$emit("show-notification", {
         message: "Cadastro realizado com sucesso!",
         type: "success",

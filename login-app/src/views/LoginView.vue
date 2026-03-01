@@ -102,12 +102,10 @@ export default {
         });
         return;
       }
-
+      setLoggedUser(user);
       if (user.type === "cliente") {
-        setLoggedUser(this.email);
         window.location.href = "http://localhost:8081/cliente";
       } else if (user.type === "barbeiro") {
-        setLoggedUser(this.email);
         window.location.href = "http://localhost:8081/barbeiro";
       }
     },

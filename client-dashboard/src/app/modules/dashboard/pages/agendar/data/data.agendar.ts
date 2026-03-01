@@ -1,17 +1,23 @@
 export const barbers = [
     {
-      name: 'Rafael Santos',
+      id: 1,
+      name: 'Sr Natan',
       role: 'Master Barber',
+      email: 'natan@gmail.com',
       image: 'https://thumbs.dreamstime.com/b/retrato-do-barbeiro-%C3%A0-moda-com-barba-e-de-ferramentas-profissionais-em-um-fundo-escuro-69023290.jpg'
     },
     {
+      id: 2,
       name: 'Bruno Machado',
       role: 'Barber',
+      email: 'bruno.machado@gmail.com',
       image: 'https://i.pinimg.com/originals/3c/eb/f7/3cebf70e745460741acf65936e7d1ad0.jpg'
     },
     {
+      id: 3,
       name: 'Henrique Luis',
       role: 'Barber',
+      email: 'henrique.luis@gmail.com',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9DIEi41Vmvh8Pb-YjRuW-KcdQMX28uFLblg&s'
     }
   ];
@@ -48,17 +54,17 @@ export const services = [
     },
   ];
 
-export const availableTimes = [
-  { time: '08:00', isDisabled: false },
-  { time: '08:50', isDisabled: false },
-  { time: '09:40', isDisabled: false },
-  { time: '10:35', isDisabled: false },
-  { time: '11:20', isDisabled: false },
-  { time: '14:00', isDisabled: false },
-  { time: '14:50', isDisabled: false },
-  { time: '15:40', isDisabled: false },
-  { time: '16:35', isDisabled: false },
-  { time: '17:20', isDisabled: false },
-  { time: '18:10', isDisabled: false },
-  { time: '19:15', isDisabled: false },
-];
+// export const availableTimes = [
+//   { time: '08:00', isDisabled: false },
+//   { time: '08:50', isDisabled: false },
+//   { time: '09:40', isDisabled: false },
+//   { time: '10:35', isDisabled: false },
+//   { time: '11:20', isDisabled: false },
+//   { time: '14:00', isDisabled: false },
+//   { time: '14:50', isDisabled: false },
+//   { time: '15:40', isDisabled: false },
+//   { time: '16:35', isDisabled: false },
+//   { time: '17:20', isDisabled: false },
+//   { time: '18:10', isDisabled: false },
+//   { time: '22:15', isDisabled: false },
+// ];

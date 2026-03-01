@@ -2,21 +2,22 @@ module.exports = {
 content: ['./src/**/*.{vue,js,ts,tsx,html}'],
 important: '#login',
 corePlugins: { preflight: false },
-theme: {
+  theme: {
     extend: {
       colors: {
         primary: '#ffba00',
         secondary: '#1f2937',
-        background: '#1c1917',
-        color_text: '#99a1af',
+        background: '#09090b',
+        color_text: '#99a1af', 
       },
       boxShadow: {
-        'inset-sm': 'inset 0 1px 2px rgba(0, 0, 0, 0.05)', 
+        'inset-sm': 'inset 0 1px 2px rgba(0, 0, 0, 0.05)',
         'inset-md': 'inset 0 4px 6px rgba(0, 0, 0, 0.1)',
         'inset-lg': 'inset 0 10px 15px rgba(0, 0, 0, 0.2)',
-        'inset-primary': 'inset 0 2px 4px rgba(212, 175, 55, 0.4)',
+        'inset-primary': 'inset 0 2px 4px rgb(34, 36, 54)',
+        'inset-gradient': 'inset 3px 0 0 rgb(255, 186, 0)',
       },
     },
-},
+  },
 plugins: []
 };

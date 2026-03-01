@@ -6,8 +6,12 @@
                 <p class="text-gray-400 mb-6 mt-2">Gerencie suas visitas e consulte o histórico.</p>
             </div>
             <button (click)="novoAgendamento()"
-                class="flex items-center py-1 px-5 bg-yellow-500 text-black font-bold rounded-md hover:bg-yellow-600 transition-colors">
-                <p class="text-lg my-0 mr-2 ">+</p>
+                class="flex items-center gap-2 rounded-lg border border-zinc-800  bg-zinc-900/70 px-4 py-2 text-sm text-white"
+                title="Selecionar data">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-5 text-primary">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
                 <p class="m-0">Novo Agendamento</p>
             </button>
         </div>
@@ -16,29 +20,28 @@
         </div>
         <div class="mb-8">
             <h2 class="text-lg font-semibold mb-4">Agendamentos em Aberto</h2>
-            <div *ngIf="upcomingAppointments.length === 0" class="text-gray-400 text-center">
+            <div *ngIf="agendamentoAberto.length === 0" class="text-gray-400 text-center">
                 Nenhum agendamento em aberto.
             </div>
-            <div *ngFor="let agendamento of upcomingAppointments"
+            <div *ngFor="let agendamento of agendamentoAberto"
                 class="bg-background p-4 rounded-lg flex items-center justify-between my-4">
                 <div class="flex items-center">
                     <div class="relative">
-                        <img [src]="getBarberImage(agendamento.barber)" alt="Barbeiro"
-                            class="size-28 mr-6 rounded-lg" />
+                        <img [src]="getBarberImage(agendamento)" alt="Barbeiro" class="size-28 mr-6 rounded-lg" />
                         <span
                             class="absolute bottom-0 right-5 transform  font-semibold bg-primary px-2 rounded-sm py-0.5 text-black text-xs font-mono">
-                            {{ agendamento.barber === 'Rafael Santos' ? 'MASTER' : 'BARBER' }}
+                            {{ getBarberRoleLabel(agendamento) }}
                         </span>
                     </div>
                     <div>
-                        <p class="text-white font-bold text-l m-0">{{ agendamento.barber }}</p>
+                        <p class="text-white font-bold text-l m-0">{{ agendamento.barbeiro }}</p>
                         <p class="text-sm text-color_text flex items-center font-mono">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-5 text-primary mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664" />
                             </svg>
-                            {{ agendamento.service }}
+                            {{ agendamento.servico }}
                         </p>
                         <div class="flex items-center mt-1 gap-2">
                             <span
@@ -48,7 +51,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                 </svg>
-                                {{ agendamento.date }}
+                                {{ agendamento.data }}
                             </span>
                             <span
                                 class="text-white text-xs flex items-center bg-zinc-800 py-0.5 px-2 rounded-md border border-solid border-zinc-700 font-mono">
@@ -57,7 +60,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
-                                {{ agendamento.time.time }}
+                                {{ agendamento.horario }}
                             </span>
                             <span
                                 class="text-white text-xs flex items-center bg-zinc-800 py-0.5 px-2 rounded-md border border-solid border-zinc-700 font-mono">
@@ -67,19 +70,30 @@
                                         d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
 
-                                {{ agendamento.price }}
+                                {{ agendamento.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-col gap-4 w-md mr-2">
                     <button (click)="alterarAgendamento(agendamento)"
-                        class="w-full py-2 px-4 bg-transparent border border-solid border-primary text-primary font-bold rounded-md hover:bg-zinc-800 transition-colors mr-2">
+                        class="w-full py-2 px-4 bg-transparent border border-solid border-color_text text-color_text font-bold rounded-md hover:bg-zinc-800 transition-colors mr-2 flex justify-center items-center">
                         Alterar
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-4 ml-2 text-primary">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                        </svg>
                     </button>
                     <button (click)="cancelarAgendamento(agendamento)"
-                        class="w-full py-2 px-4 bg-transparent border border-solid border-color_text text-color_text font-bold rounded-md transition-colors duration-300 hover:bg-zinc-800">
+                        class="w-full py-2 px-4 bg-transparent border border-solid border-color_text text-color_text font-bold rounded-md transition-colors duration-300 hover:bg-zinc-800 flex justify-center items-center">
                         Cancelar
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-4 ml-2 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                        </svg>
+
                     </button>
                 </div>
             </div>
@@ -98,48 +112,49 @@
                     <div>
                         <p class="text-gray-400 text-sm mt-0">
                             <strong class="text-primary mr-1"
-                                [ngClass]="{ ' text-gray-500': item.status === 'cancelado' }">Barbeiro:</strong> {{
-                            item.barber }}
+                                [ngClass]="{ ' text-gray-500': item.statusAgendamento === 'cancelado' }">Barbeiro:</strong>
+                            {{
+                            item.barbeiro }}
                         </p>
                         <div class="flex items-center mt-1 gap-2">
                             <span
                                 class="text-white text-xs flex items-center bg-zinc-800 py-0.5 px-2 rounded-md border border-solid border-zinc-700 font-mono"
-                                [ngClass]="{ ' text-gray-500': item.status === 'cancelado' }">
+                                [ngClass]="{ ' text-gray-500': item.statusAgendamento === 'cancelado' }">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-4 text-primary mr-2"
-                                    [ngClass]="{ ' text-gray-500': item.status === 'cancelado' }">
+                                    [ngClass]="{ ' text-gray-500': item.statusAgendamento === 'cancelado' }">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                 </svg>
-                                {{ item.date }}
+                                {{ item.data }}
                             </span>
 
                             <span
                                 class="text-white text-xs flex items-center bg-zinc-800 py-0.5 px-2 rounded-md border border-solid border-zinc-700 font-mono"
-                                [ngClass]="{ ' text-gray-500': item.status === 'cancelado' }">
+                                [ngClass]="{ ' text-gray-500': item.statusAgendamento === 'cancelado' }">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-4 text-primary mr-2"
-                                    [ngClass]="{ ' text-gray-500': item.status === 'cancelado' }">
+                                    [ngClass]="{ ' text-gray-500': item.statusAgendamento === 'cancelado' }">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
-                                {{ item.time.time }}
+                                {{ item.horario }}
                             </span>
                         </div>
                     </div>
                     <div class="flex items-center space-x-6">
                         <p class="text-white font-bold font-mono"
-                            [ngClass]="{ 'line-through text-gray-500': item.status === 'cancelado' }">
-                            {{ item.price }}
+                            [ngClass]="{ 'line-through text-gray-500': item.statusAgendamento === 'cancelado' }">
+                            {{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
                         </p>
                         <p class="font-semibold text-sm"
-                            [ngClass]="{ 'text-green-500': item.status === 'ativo', 'text-red-500': item.status === 'cancelado' }">
-                            {{ item.status === 'ativo' ? '✔ CONCLUÍDO' : '✖ CANCELADO' }}
+                            [ngClass]="{ 'text-green-500': item.statusAgendamento === 'ativo', 'text-red-500': item.statusAgendamento === 'cancelado' }">
+                            {{ item.statusAgendamento === 'ativo' ? '✔ CONCLUÍDO' : '✖ CANCELADO' }}
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="text-center mb-8">
+            <div *ngIf="historico.length !== 0" class="text-center mb-8">
                 <button (click)="alternarHistorico()"
                     class="text-white font-bold bg-transparent border-none cursor-pointer">
                     <svg *ngIf="!mostrarTudo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

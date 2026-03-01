@@ -1,26 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/components/notification/notification.service';
+import { Usuario } from 'src/app/models/agendamento.model';
 
 @Component({
   templateUrl: './perfil.component.html'
 })
 
 export class PerfilComponent implements OnInit {
-  user: any = {};
+    user: Usuario = {
+    fullName: '',
+    email: '',
+    telefone: '',
+    password: '',
+    type: 'cliente',
+  };
   originalEmail: string = '';
   newPassword: string = '';
   confirmNewPassword: string = '';
 
-  constructor( 
-    private notificationService: NotificationService, 
-  ) {}
+  constructor( private notificationService: NotificationService ) {}
 
   ngOnInit(): void {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const loggedUserEmail = localStorage.getItem('loggedUser');
-    const loggedUser = users.find((user: any) => user.email === loggedUserEmail);
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser') || '{}'); 
 
-    if (loggedUser) {
+    if (loggedUser  && loggedUser.email) {
       this.user = { ...loggedUser };
       this.originalEmail = loggedUser.email;
     }
@@ -47,17 +50,17 @@ export class PerfilComponent implements OnInit {
       }
       if (
         this.user.fullName !== users[userIndex].fullName ||
-        this.user.email !== users[userIndex].email
+        this.user.email !== users[userIndex].email ||
+        this.user.telefone !== users[userIndex].telefone
       ) {
         hasChanges = true; 
       }
-      if (this.user.email !== users[userIndex].email) {
-        localStorage.setItem('loggedUser', this.user.email);
-      }
+
       if (hasChanges) {
         users[userIndex] = { ...this.user, password: users[userIndex].password };
         localStorage.setItem('users', JSON.stringify(users));
-        this.user = { ...users[userIndex] };
+        localStorage.setItem('loggedUser', JSON.stringify(this.user));
+
         this.notificationService.showNotification(
           `Perfil atualizado com sucesso!`,
           'success'
@@ -76,11 +79,9 @@ export class PerfilComponent implements OnInit {
     }
   }
   resetForm(): void {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const loggedUserEmail = localStorage.getItem('loggedUser');
-    const loggedUser = users.find((user: any) => user.email === loggedUserEmail);
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser') || '{}');
 
-    if (loggedUser) {
+    if (loggedUser && loggedUser.email) {
       this.user = { ...loggedUser };
       this.newPassword = '';
       this.confirmNewPassword = '';

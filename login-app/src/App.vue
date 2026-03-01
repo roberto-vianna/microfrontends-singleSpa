@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-zinc-950">
+  <div id="app" class="bg-black">
     <NotificationLogin v-if="notification.visible" :message="notification.message" :type="notification.type"
       @close="notification.visible = false" />
     <main>
