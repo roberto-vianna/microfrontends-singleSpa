@@ -21,6 +21,7 @@ export default function Perfil() {
   const [fullName, setFullName] = useState("");
   const [telefone, setTelefone] = useState("");
   const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState(AVATAR_PLACEHOLDER);
   const [senhaAtual, setSenhaAtual] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarNovaSenha, setConfirmarNovaSenha] = useState("");
@@ -29,12 +30,6 @@ export default function Perfil() {
   const { showNotification } = useNotification();
   const [saving, setSaving] = useState(false);
 
-  const roleLabel = useMemo(() => {
-    if (loggedUser?.type === "cliente") return "CLIENTE VIP";
-    if (loggedUser?.type === "barbeiro") return "MASTER";
-    return "";
-  }, [loggedUser?.type]);
-
   const load = () => {
     const user = safeParse(localStorage.getItem("loggedUser"), null);
     setLoggedUser(user);
@@ -42,6 +37,7 @@ export default function Perfil() {
     setFullName(user?.fullName || "");
     setTelefone(user?.telefone || "");
     setEmail(user?.email || "");
+    setAvatar(user?.avatar || AVATAR_PLACEHOLDER);
     setSenhaAtual("");
     setNovaSenha("");
     setConfirmarNovaSenha("");
@@ -122,6 +118,7 @@ export default function Perfil() {
       nextFullName !== prevFullName ||
       nextEmail !== prevEmail ||
       nextTelefone !== prevTelefone ||
+      avatar !== loggedUser?.avatar ||
       (wantsChangePass && !!novaSenha);
 
     if (!hasChanges) {
@@ -143,6 +140,7 @@ export default function Perfil() {
         fullName: fullName.trim(),
         telefone: onlyDigits(telefone),
         email: nextEmail,
+        avatar,
         password: novaSenha ? novaSenha : loggedUser.password,
       };
 
@@ -170,6 +168,17 @@ export default function Perfil() {
     }
   };
 
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setAvatar(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   if (!loggedUser) {
     return (
       <div className="min-h-screen px-6 py-10 text-center text-color_text">
@@ -193,30 +202,39 @@ export default function Perfil() {
             <div className="relative">
               <div className="size-36 rounded-full overflow-hidden border-4 border-primary/70 bg-zinc-800">
                 <img
-                  src={AVATAR_PLACEHOLDER}
+                  src={avatar}
                   alt="Avatar"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <button
-                type="button"
-                className="absolute bottom-2 right-2 size-9 rounded-full bg-primary text-black flex items-center justify-center border border-black/40"
-                title="Editar foto (em breve)"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+              <label
+                htmlFor="avatar-upload"
+                className="absolute bottom-2 right-2 size-9 rounded-full bg-primary text-black flex items-center justify-center border border-black/40 cursor-pointer"
+                title="Editar foto" >
+                <input
+                  id="avatar-upload"
+                  type="file" accept="image/*"
+                  className="hidden" onChange={handleAvatarChange}
+                />
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-5">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                 </svg>
-              </button>
+              </label>
             </div>
 
             <div className="mt-4 text-2xl font-bold font-serif">
-              {loggedUser.fullName || "—"}
+              {loggedUser.fullName || "Usuário"}
             </div>
 
-            <div className="my-1 text-sm font-bold text-primary">
-              {roleLabel}
+            <div className="my-1 text-sm font-bold text-primary uppercase">
+              {loggedUser.role || "profissional"}
             </div>
 
             <span

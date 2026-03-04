@@ -133,7 +133,7 @@ export class AgendarComponent implements OnInit, AfterViewInit {
         id: Number(u.id),
         name: String(u.fullName || '—'),
         email: String(u.email || ''),
-        image: String(u.avatarUrl || u.barbeiroImagem || this.avatarFallback),
+        image: String(u.avatar || u.barbeiroImagem || this.avatarFallback),
         role: (u.role === 'master' ? 'MASTER' : 'PROFISSIONAL') as 'MASTER' | 'PROFISSIONAL',
       }))
       .sort((a, b) => {

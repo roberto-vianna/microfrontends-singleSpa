@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -8,7 +8,7 @@ import { AgendamentosComponent } from './pages/agendamentos/agendamentos.compone
 import { PerfilComponent } from './pages/perfil/perfil.component'
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
@@ -34,6 +34,8 @@ registerLocaleData(localePt);
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [MatDatepickerModule , { provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
+  ],
 })
 export class DashboardModule {}

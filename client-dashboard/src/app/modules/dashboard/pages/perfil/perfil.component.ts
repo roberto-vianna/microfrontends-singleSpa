@@ -13,6 +13,7 @@ export class PerfilComponent implements OnInit {
     telefone: '',
     password: '',
     type: 'cliente',
+    avatar: '',
   };
   originalEmail: string = '';
   newPassword: string = '';
@@ -26,6 +27,7 @@ export class PerfilComponent implements OnInit {
     if (loggedUser  && loggedUser.email) {
       this.user = { ...loggedUser };
       this.originalEmail = loggedUser.email;
+      this.user.avatar = loggedUser.avatar || 'https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg';
     }
   }
   updateProfile(): void {
@@ -51,7 +53,8 @@ export class PerfilComponent implements OnInit {
       if (
         this.user.fullName !== users[userIndex].fullName ||
         this.user.email !== users[userIndex].email ||
-        this.user.telefone !== users[userIndex].telefone
+        this.user.telefone !== users[userIndex].telefone ||
+        this.user.avatar !== users[userIndex].avatar
       ) {
         hasChanges = true; 
       }
@@ -92,4 +95,20 @@ export class PerfilComponent implements OnInit {
       );
     }
   }
+
+  onAvatarChange(event: Event): void {
+  const input = event.target as HTMLInputElement;
+
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.user.avatar = reader.result as string;
+    };
+
+    reader.readAsDataURL(file);
+  }
+}
+  
 }

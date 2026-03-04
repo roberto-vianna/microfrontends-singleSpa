@@ -148,8 +148,8 @@
                             {{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
                         </p>
                         <p class="font-semibold text-sm"
-                            [ngClass]="{ 'text-green-500': item.statusAgendamento === 'ativo', 'text-red-500': item.statusAgendamento === 'cancelado' }">
-                            {{ item.statusAgendamento === 'ativo' ? '✔ CONCLUÍDO' : '✖ CANCELADO' }}
+                            [ngClass]="{ 'text-green-500': item.statusAgendamento === 'finalizado', 'text-red-500': item.statusAgendamento === 'cancelado' }">
+                            {{ item.statusAgendamento === 'finalizado' ? '✔ CONCLUÍDO' : '✖ CANCELADO' }}
                         </p>
                     </div>
                 </div>

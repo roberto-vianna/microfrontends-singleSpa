@@ -33,14 +33,13 @@
             <div class="flex-grow h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
         </div>
         <div class="flex items-center ml-4 gap-4 mb-4">
-            <div class=" rounded-full size-10 flex items-center justify-center">
-                <img src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
+            <div class="rounded-full size-10 flex items-center justify-center">
+                <img [src]="loggedUser?.avatar || 'https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg'"
                     alt="User Avatar" class="size-10 rounded-full" />
             </div>
             <div>
                 <div class="text-md font-bold"> {{ loggedUser?.fullName }}</div>
-                <div class="text-[10px] pt-0.5 text-primary">{{ loggedUser?.type === 'cliente' ? "MEMBRO VIP" :
-                    'MASTER'}}</div>
+                <div class="text-[10px] pt-0.5 text-primary">CLIENTE VIP</div>
             </div>
         </div>
         <button

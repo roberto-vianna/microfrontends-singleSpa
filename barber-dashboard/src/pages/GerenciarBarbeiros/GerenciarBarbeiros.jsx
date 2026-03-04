@@ -1,5 +1,4 @@
 import {
-  UserCircleIcon,
   CheckCircleIcon,
   XCircleIcon,
   PencilSquareIcon,
@@ -152,6 +151,9 @@ export default function GerenciarBarbeiros() {
 
     return barbers
       .filter((b) => {
+        if (Number(b.id) === Number(loggedUser.id)) {
+          return false
+        }
         if (!q) return true;
         return (
           String(b.fullName || "").toLowerCase().includes(q) ||
@@ -295,7 +297,6 @@ export default function GerenciarBarbeiros() {
 
               <tbody>
                 {filtered.map((b) => {
-                  const isSelf = Number(b.id) === Number(loggedUser.id);
                   const waLink = b.telefone ? `https://wa.me/${b.telefone}` : null;
 
                   return (
@@ -303,23 +304,25 @@ export default function GerenciarBarbeiros() {
                       <td className="px-4 py-3">
                         <div className="flex items-center justify-center gap-3 min-w-0">
                           <div className="size-10 rounded-full overflow-hidden border border-zinc-800 bg-zinc-950 flex items-center justify-center">
-                            {b.avatarUrl ? (
+                            {b.avatar ? (
                               <img
-                                src={b.avatarUrl}
-                                alt={b.fullName}
+                                src={b.avatar}
                                 className="h-full w-full object-cover"
                                 onError={(e) => {
                                   e.currentTarget.style.display = "none";
                                 }}
                               />
                             ) : (
-                              <UserCircleIcon className="h-10 w-10 text-color_text" />
+                              <img
+                                src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
+                                className="h-full w-full object-cover"
+                              />
                             )}
                           </div>
 
                           <div className="min-w-0">
                             <div className="text-white font-semibold truncate">
-                              {b.fullName || "—"} {isSelf ? <span className="text-color_text">(você)</span> : null}
+                              {b.fullName || "—"}
                             </div>
                             <div className="text-xs text-color_text truncate">{b.email}</div>
                           </div>
@@ -379,18 +382,15 @@ export default function GerenciarBarbeiros() {
                           <button
                             type="button"
                             onClick={() => setRoleModalState({ open: true, userId: b.id, currentRole: b.role })}
-                            disabled={isSelf}
-                            className={cn("inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-transparent px-3 py-2 text-sm text-white hover:bg-zinc-800",
-                              isSelf && "opacity-60 cursor-not-allowed")}
-                            title={isSelf ? "Você não pode alterar seu próprio perfil." : "Alterar perfil"} >
+                            className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-transparent px-3 py-2 text-sm text-white hover:bg-zinc-800"
+                            title="Alterar perfil">
                             <PencilSquareIcon className="h-5 w-5 text-amber-500" />
                           </button>
                           <button
                             type="button"
                             onClick={() => toggleActive(b)}
-                            disabled={isSelf}
-                            className={cn("inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-transparent px-3 py-2 text-sm text-white hover:bg-zinc-800", isSelf && "opacity-60 cursor-not-allowed")}
-                            title={isSelf ? "Você não pode desativar seu próprio perfil." : b.active ? "Desativar" : "Ativar"} >
+                            className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-transparent px-3 py-2 text-sm text-white hover:bg-zinc-800"
+                            title={b.active ? "Desativar Perfil" : "Ativar Perfil"} >
                             {b.active
                               ? (<XCircleIcon className="h-5 w-5 text-rose-500" />)
                               : (<CheckCircleIcon className="h-5 w-5 text-emerald-500"

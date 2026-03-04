@@ -43,6 +43,7 @@ export const addUser = (user) => {
     password: String(user.password || ""),
     type,
     active: true,
+    avatar: "https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg",
     ...(isBarbeiro ? { role: hasMaster ? "profissional" : "master" } : {}),
     createdAt: Date.now(),
   };

@@ -394,20 +394,6 @@ export default function GerenciarServicos() {
     showNotification({ message: "Serviço excluído.", type: "success", duration: 2500 });
   };
 
-  const toggleActive = (service) => {
-    const next = services.map((s) =>
-      s.id === service.id ? { ...s, active: !s.active } : s
-    );
-    setServices(next);
-    persist(next);
-
-    showNotification({
-      message: service.active ? "Serviço desativado." : "Serviço ativado.",
-      type: "success",
-      duration: 2000,
-    });
-  };
-
   return (
     <div className="space-y-6 min-h-screen px-4 pb-4">
       <div className="flex items-center justify-between">
@@ -428,7 +414,7 @@ export default function GerenciarServicos() {
       </div>
 
       <div className="flex-grow h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
-      
+
       <div>
         <div className="flex justify-end mb-2">
           <div className="relative w-44">
@@ -484,12 +470,10 @@ export default function GerenciarServicos() {
                     <td className="px-4 py-3 text-white font-mono">{formatBRL(s.price)}</td>
 
                     <td className="px-4 py-3">
-                      <button
-                        type="button"
-                        onClick={() => toggleActive(s)}
+                      <span
                         className={cn(
                           "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold",
-                          s.active ? "bg-emerald-500/15 text-emerald-300" : "bg-zinc-700/40 text-color_text"
+                          s.active ? "bg-green-600 text-white" : "bg-zinc-700/40 text-color_text"
                         )}
                         title="Clique para alternar"
                       >
@@ -499,7 +483,7 @@ export default function GerenciarServicos() {
                           <XCircleIcon className="h-4 w-4" />
                         )}
                         {s.active ? "ATIVO" : "INATIVO"}
-                      </button>
+                      </span>
                     </td>
 
                     <td className="px-4 py-3">

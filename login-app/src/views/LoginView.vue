@@ -41,7 +41,8 @@
           </div>
         </div>
         <div class="flex justify-end items-center mb-7">
-          <a href="#" class="text-sm  text-color_text hover:text-yellow-400">Esqueceu sua senha?</a>
+          <a href="/login/forgot-password" class="text-sm  text-color_text hover:text-yellow-400">Esqueceu sua
+            senha?</a>
         </div>
         <button type="submit"
           class="w-full py-2.5 px-4 bg-primary text-black font-semibold rounded-lg hover:bg-yellow-400 transition duration-300 border-none shadow-md shadow-yellow-500/50">
@@ -113,7 +114,7 @@ export default {
       this.passwordVisible = !this.passwordVisible;
     },
     googleLogin() {
-      this.email = 'jrviana@gmail.com', this.password = '123'
+      this.email = 'robertobarber@gmail.com', this.password = '12345'
       EventBus.$emit("show-notification", {
         message: "Dados preenchidos com sua conta Google, clique em 'Entrar' para continuar!",
         type: "success",

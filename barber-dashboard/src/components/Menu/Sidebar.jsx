@@ -6,7 +6,6 @@ import {
   WrenchScrewdriverIcon,
   ClockIcon,
   UsersIcon,
-  Cog6ToothIcon,
 } from "@heroicons/react/24/solid";
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
@@ -14,12 +13,12 @@ import SidebarItem from "./SidebarItem";
 
 const menuItems = [
   { label: "Agendamentos", route: "/agendamentos", icon: CalendarDaysIcon },
+  { label: "Horários", route: "/horarios", icon: ClockIcon },
   { label: "Perfil", route: "/perfil", icon: UserIcon },
 ];
 
 const gerenciarSubItems = [
   { label: "Serviços", route: "/gerenciar-servicos/servicos", icon: WrenchScrewdriverIcon },
-  { label: "Horários", route: "/gerenciar-servicos/horarios", icon: ClockIcon },
   { label: "Barbeiros", route: "/gerenciar-servicos/barbeiros", icon: UsersIcon },
   // { label: "Configurações", route: "/gerenciar-servicos/configuracoes", icon: Cog6ToothIcon },
 ];
@@ -38,6 +37,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   const loggedUser = safeParse(localStorage.getItem("loggedUser"), null);
+  const isMaster = loggedUser?.role === "master";
 
   const isInGerenciar = useMemo(
     () => location.pathname.startsWith("/gerenciar-servicos"),
@@ -80,51 +80,52 @@ const Sidebar = () => {
         {menuItems.map((item) => (
           <SidebarItem key={item.route} label={item.label} route={item.route} icon={item.icon} />
         ))}
-
-        <div>
-          <button
-            type="button"
-            onClick={() => setOpenGerenciar((v) => !v)}
-            className={cn(
-              "w-full flex items-center justify-between no-underline p-4 gap-4 cursor-pointer transition-all duration-300 rounded-lg border-none bg-transparent",
-              "hover:bg-gray-800 transition",
-              isInGerenciar && "bg-gray-800"
-            )}
-          >
-            <div className="flex items-center gap-2">
-              <ClipboardDocumentListIcon className="size-6 text-color_text" />
-              <span className="text-base font-medium text-color_text">Gerenciar Serviços</span>
-            </div>
-
-            <ChevronDownIcon
+        {isMaster &&
+          <div>
+            <button
+              type="button"
+              onClick={() => setOpenGerenciar((v) => !v)}
               className={cn(
-                "h-4 w-4 text-color_text transition-transform duration-200",
-                openGerenciar && "rotate-180"
+                "w-full flex items-center justify-between no-underline p-4 gap-4 cursor-pointer transition-all duration-300 rounded-lg border-none bg-transparent",
+                "hover:bg-gray-800 transition",
+                isInGerenciar && "bg-gray-800"
               )}
-            />
-          </button>
-          <div
-            className={cn(
-              "pl-7 mt-2 space-y-1 overflow-hidden transition-all duration-300",
-              openGerenciar ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-            )}
-          >
-            {gerenciarSubItems.map((s) => {
-              const Icon = s.icon;
-              return (
-                <NavLink
-                  key={s.route}
-                  to={s.route}
-                  className={({ isActive }) => [" no-underline flex items-center p-4 gap-4 cursor-pointer transition-all duration-300 rounded-lg", isActive ? "text-primary bg-gradient-to-r from-[rgba(255,186,0,0.3)] via-[rgba(255,186,0,0.1)] to-transparent shadow-inset-gradient" : "text-color_text hover:bg-gray-800",].join(" ")} >
-                  {({ isActive }) => (<>
-                    <Icon className={["size-5", isActive ? "text-primary" : "text-color_text"].join(" ")} />
-                    <span className={["text-sm font-medium", isActive ? "text-primary" : "text-color_text"]}>{s.label}</span> </>
-                  )}
-                </NavLink>
-              );
-            })}
+            >
+              <div className="flex items-center gap-2">
+                <ClipboardDocumentListIcon className="size-6 text-color_text" />
+                <span className="text-base font-medium text-color_text">Gerenciar Serviços</span>
+              </div>
+
+              <ChevronDownIcon
+                className={cn(
+                  "h-4 w-4 text-color_text transition-transform duration-200",
+                  openGerenciar && "rotate-180"
+                )}
+              />
+            </button>
+            <div
+              className={cn(
+                "pl-7 mt-2 space-y-1 overflow-hidden transition-all duration-300",
+                openGerenciar ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              )}
+            >
+              {gerenciarSubItems.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <NavLink
+                    key={s.route}
+                    to={s.route}
+                    className={({ isActive }) => [" no-underline flex items-center p-4 gap-4 cursor-pointer transition-all duration-300 rounded-lg", isActive ? "text-primary bg-gradient-to-r from-[rgba(255,186,0,0.3)] via-[rgba(255,186,0,0.1)] to-transparent shadow-inset-gradient" : "text-color_text hover:bg-gray-800",].join(" ")} >
+                    {({ isActive }) => (<>
+                      <Icon className={["size-5", isActive ? "text-primary" : "text-color_text"].join(" ")} />
+                      <span className={["text-sm font-medium", isActive ? "text-primary" : "text-color_text"]}>{s.label}</span> </>
+                    )}
+                  </NavLink>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        }
       </div>
 
       <div className="mt-auto pb-4 px-6">
@@ -135,7 +136,7 @@ const Sidebar = () => {
         <div className="flex items-center ml-4 gap-4 my-4">
           <div className="rounded-full size-10 overflow-hidden">
             <img
-              src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
+              src={loggedUser?.avatar || "https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"}
               alt="User Avatar"
               className="size-10"
             />
@@ -146,8 +147,8 @@ const Sidebar = () => {
               {loggedUser?.fullName || "Usuário"}
             </div>
 
-            <div className="text-[10px] pt-0.5 text-primary">
-              {loggedUser?.type === "barbeiro" ? "MASTER" : "MEMBRO VIP"}
+            <div className="text-[10px] pt-0.5 text-primary uppercase">
+              {loggedUser?.role || ""}
             </div>
           </div>
         </div>

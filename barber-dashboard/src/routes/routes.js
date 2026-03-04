@@ -10,6 +10,10 @@ const routes = [
     component: React.lazy(() => import("../pages/Agendamentos/Agendamentos")),
   }, 
   {
+    path: "/horarios",
+    component: React.lazy(() => import("../pages/GerenciarHorarios/GerenciarHorarios")),
+  },
+  {
     path: "/perfil",
     component: React.lazy(() => import("../pages/Perfil/Perfil")),
   },
@@ -20,10 +24,6 @@ const routes = [
     {
       path: "/gerenciar-servicos/servicos",
       component: React.lazy(() => import("../pages/GerenciarServicos/GerenciarServicos")),
-    },
-    {
-      path: "/gerenciar-servicos/horarios",
-      component: React.lazy(() => import("../pages/GerenciarHorarios/GerenciarHorarios")),
     },
     {
       path: "/gerenciar-servicos/barbeiros",

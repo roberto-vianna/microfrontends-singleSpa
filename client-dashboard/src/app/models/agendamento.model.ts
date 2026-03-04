@@ -21,6 +21,7 @@ export interface Usuario {
   email: string;
   telefone: string;
   password: string; 
+  avatar?: string;
   type: 'cliente' | 'barbeiro';
 }
 

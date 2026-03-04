@@ -38,9 +38,9 @@ export default function Notification({ message, type, duration = 3000, onClose }
         >
             <div className="flex items-center">
                 <div className="mr-3 flex items-center justify-center rounded-full bg-opacity-25">
-                    <Icon className="size-6" />
+                    <Icon className="size-4" />
                 </div>
-                <p className="text-md font-medium my-0">{message}</p>
+                <p className="text-sm font-medium my-0">{message}</p>
             </div>
         </div>
     );

@@ -28,8 +28,7 @@ const DEFAULT_TIMES = [
     { time: "14:50" },
     { time: "15:40" },
     { time: "16:35" },
-    { time: "17:20" },
-    { time: "18:10" }
+    { time: "17:20" }
 ];
 
 const safeParse = (value, fallback) => {
@@ -298,39 +297,24 @@ export default function GerenciarHorarios() {
     }, [times, bookedSet, blockedSet, selectedDateBR, selectedDateISO]);
 
     const addTime = () => {
-        if (!isMaster) return;
-
         const value = String(newTime || "").trim();
         if (!/^\d{2}:\d{2}$/.test(value)) {
-            showNotification({ message: "Horário inválido (formato HH:mm)", type: "alert", duration: 3000 });
+            showNotification({ message: "Horário inválido !", type: "alert", duration: 3000 });
             return;
         }
-
         if (times.some(t => t.time === value)) {
             showNotification({ message: "Horário já existe", type: "alert", duration: 2500 });
             return;
         }
-
         const nextTimes = [...times, { time: value }].sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
         persistTimes(nextTimes);
         setTimes(nextTimes);
-
-        if (selectedBarberId !== "all") {
-            const newBlock = {
-                idBarbeiro: Number(selectedBarberId),
-                date: selectedDateBR,
-                time: value
-            };
-            setBlocked(prev => [...prev, newBlock]);
-            persistBlocked([...blocked, newBlock]);
-        }
-
-        setNewTime("");
         showNotification({
-            message: `Horário adicionado${selectedBarberId === "all" ? '' : ' para este barbeiro'}`,
+            message: `Novo horário adicionado com sucesso !`,
             type: "success",
             duration: 2000
         });
+        setNewTime("");
     };
 
     const askRemoveTime = (time) => {
@@ -344,35 +328,18 @@ export default function GerenciarHorarios() {
         setTimes(sanitized);
 
         let nextBlocked;
-        if (selectedBarberId === "all") {
-            nextBlocked = blocked.filter(b => b.time !== time);
-        } else {
-            const barberId = Number(selectedBarberId);
-            nextBlocked = blocked.filter(b =>
-                !(Number(b.idBarbeiro) === barberId && b.time === time)
-            );
-        }
 
         setBlocked(nextBlocked);
         persistBlocked(nextBlocked);
 
         showNotification({
-            message: `Horário removido${selectedBarberId === "all" ? ' globalmente' : ''}`,
+            message: `Horário removido com sucesso !`,
             type: "success",
             duration: 2000
         });
     };
 
     const toggleManualBlock = (time) => {
-
-        if (!isMaster && Number(selectedBarberId) !== loggedUser.id) {
-            showNotification({
-                message: "Você só pode alterar seus próprios horários.",
-                type: "alert",
-                duration: 3000
-            });
-            return;
-        }
 
         if (selectedBarberId === "all") {
             const isBlocked = barbers.some(b =>
@@ -596,7 +563,7 @@ export default function GerenciarHorarios() {
                                     {slot.past && (
                                         <div className="flex items-center gap-2">
                                             <XCircleIcon className="h-4 w-4 text-rose-400" />
-                                            <span>Data/hora passada</span>
+                                            <span>Expirado</span>
                                         </div>
                                     )}
                                     {slot.manualBlocked && (
@@ -642,8 +609,8 @@ export default function GerenciarHorarios() {
                 title={confirm.type === "removeTime" ? "Remover horário" : "Restaurar padrão"}
                 description={
                     confirm.type === "removeTime"
-                        ? `Deseja remover o horário "${confirm.payload?.time}" da grade base?`
-                        : "Deseja restaurar a grade para o padrão? Isso sobrescreve a configuração atual."
+                        ? `Deseja remover o horário "${confirm.payload?.time}" da base?`
+                        : "Deseja restaurar a base de horário para o padrão? Isso sobrescreve a configuração atual."
                 }
                 confirmText={confirm.type === "removeTime" ? "Remover" : "Restaurar"}
                 onCancel={() => setConfirm({ open: false, type: null, payload: null })}
