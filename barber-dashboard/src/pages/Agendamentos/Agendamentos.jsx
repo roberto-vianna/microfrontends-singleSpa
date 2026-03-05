@@ -236,7 +236,7 @@ export default function Agendamentos() {
       window.removeEventListener("agendamentos:changed", onCustom);
       window.removeEventListener("storage", onStorage);
     };
-  }, [loadFromStorage]);
+  }, [runAutoWorkflow, loadFromStorage]);
 
   useEffect(() => {
     const tick = () => {

@@ -160,7 +160,7 @@ export default function GerenciarBarbeiros() {
           String(b.email || "").toLowerCase().includes(q)
         );
       });
-  }, [barbers, query]);
+  }, [barbers, query, loggedUser.id]);
 
   const isMaster = loggedUser?.type === "barbeiro" && loggedUser?.role === "master";
 
@@ -307,6 +307,7 @@ export default function GerenciarBarbeiros() {
                             {b.avatar ? (
                               <img
                                 src={b.avatar}
+                                alt={`Avatar do barbeiro ${b.fullName}`}
                                 className="h-full w-full object-cover"
                                 onError={(e) => {
                                   e.currentTarget.style.display = "none";
@@ -315,6 +316,7 @@ export default function GerenciarBarbeiros() {
                             ) : (
                               <img
                                 src="https://thumbs.dreamstime.com/b/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg"
+                                alt="Avatar padrão"
                                 className="h-full w-full object-cover"
                               />
                             )}
