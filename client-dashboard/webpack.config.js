@@ -2,25 +2,24 @@ const singleSpaAngularWebpack = require('single-spa-angular/lib/webpack').defaul
 
 module.exports = (config, options) => {
   const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
-  
 
   singleSpaWebpackConfig.output.libraryTarget = 'system';
-  singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpClientDashboard';
   singleSpaWebpackConfig.output.library = { type: 'system' };
-  singleSpaWebpackConfig.output.publicPath = 'http://localhost:8084/';
+  singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpClientDashboard';
+  singleSpaWebpackConfig.output.publicPath = 'https://client-dashboard-mfe.netlify.app/';
 
-singleSpaWebpackConfig.externals = [
-  'single-spa',
-  '@angular/core',
-  '@angular/common',
-  '@angular/compiler',
-  '@angular/platform-browser',
-  '@angular/platform-browser-dynamic',
-  '@angular/router',
-  'rxjs',
-  'rxjs/operators',
-  'zone.js'
-];
+  singleSpaWebpackConfig.externals = [
+    'single-spa',
+    '@angular/core',
+    '@angular/common',
+    '@angular/compiler',
+    '@angular/platform-browser',
+    '@angular/platform-browser-dynamic',
+    '@angular/router',
+    'rxjs',
+    'rxjs/operators',
+    'zone.js',
+  ];
 
   return singleSpaWebpackConfig;
 };
