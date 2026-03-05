@@ -20,4 +20,13 @@ module.exports = {
     },
     port: 8082,
   },
+  pluginOptions: {
+    copy: [
+      {
+        from: "src/_redirects",
+        to: "_redirects",
+        toType: "file",
+      },
+    ],
+  },
 };
