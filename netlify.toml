@@ -1,9 +1,0 @@
-[build]
-  base = "microfrontend-root/root-config"
-  command = "npm run build"
-  publish = "microfrontend-root/root-config/dist"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
