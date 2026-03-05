@@ -8,11 +8,6 @@ yarn-error.log*
 # Diretórios de dependências
 node_modules/
 
-# Build outputs
-dist/
-build/
-coverage/
-
 # Editor e sistema operacional
 .DS_Store
 Thumbs.db
