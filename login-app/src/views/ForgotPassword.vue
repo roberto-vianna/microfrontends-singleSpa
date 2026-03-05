@@ -68,6 +68,7 @@ export default {
             const resetCode = Math.floor(100000 + Math.random() * 900000);
             localStorage.setItem("passwordReset", JSON.stringify({ email: user.email, resetCode }));
 
+            // eslint-disable-next-line no-console
             console.log(`Código de redefinição enviado para ${user.email}: ${resetCode}`);
 
             EventBus.$emit("show-notification", {

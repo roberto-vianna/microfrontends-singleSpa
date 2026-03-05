@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue, { CreateElement } from "vue";
 import singleSpaVue from "single-spa-vue";
 import './assets/tailwind.css';
 import App from "./App.vue";
@@ -11,11 +11,11 @@ Vue.config.productionTip = false;
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    render: (h: any) => h(App),
+    render: (h: CreateElement) => h(App),
     el: "#login",
     router,
     store,
-  } as any,
+  }
 });
 
 export const bootstrap = vueLifecycles.bootstrap;
