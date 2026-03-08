@@ -1,24 +1,50 @@
-const singleSpaAngularWebpack = require('single-spa-angular/lib/webpack').default;
+// const singleSpaAngularWebpack = require('single-spa-angular/lib/webpack').default;
+
+// module.exports = (config, options) => {
+//   const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
+
+//   singleSpaWebpackConfig.output.libraryTarget = 'system';
+//   singleSpaWebpackConfig.output.library = { type: 'system' };
+//   singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpClientDashboard';
+//   singleSpaWebpackConfig.output.publicPath = 'https://client-dashboard-mfe.netlify.app/';
+
+//   singleSpaWebpackConfig.externals = [
+//     'single-spa',
+//     '@angular/core',
+//     '@angular/common',
+//     '@angular/compiler',
+//     '@angular/platform-browser',
+//     '@angular/platform-browser-dynamic',
+//     '@angular/router',
+//     'rxjs',
+//     'rxjs/operators',
+//     'zone.js',
+//   ];
+
+//   return singleSpaWebpackConfig;
+// };
+
+const singleSpaAngularWebpack =
+  require("single-spa-angular/lib/webpack").default;
 
 module.exports = (config, options) => {
   const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
 
-  singleSpaWebpackConfig.output.libraryTarget = 'system';
-  singleSpaWebpackConfig.output.library = { type: 'system' };
-  singleSpaWebpackConfig.output.chunkLoadingGlobal = 'wpClientDashboard';
-  singleSpaWebpackConfig.output.publicPath = 'https://client-dashboard-mfe.netlify.app/';
+  singleSpaWebpackConfig.output.libraryTarget = "system";
+  singleSpaWebpackConfig.output.chunkLoadingGlobal = "wpClientDashboard";
+  singleSpaWebpackConfig.output.publicPath = "/cliente/";
 
   singleSpaWebpackConfig.externals = [
-    'single-spa',
-    '@angular/core',
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/router',
-    'rxjs',
-    'rxjs/operators',
-    'zone.js',
+    "single-spa",
+    "@angular/core",
+    "@angular/common",
+    "@angular/compiler",
+    "@angular/platform-browser",
+    "@angular/platform-browser-dynamic",
+    "@angular/router",
+    "rxjs",
+    "rxjs/operators",
+    "zone.js",
   ];
 
   return singleSpaWebpackConfig;

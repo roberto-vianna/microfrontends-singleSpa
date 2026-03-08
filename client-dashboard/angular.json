@@ -43,9 +43,8 @@
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",
               "libraryName": "client-dashboard",
-              "libraryTarget": "umd"
-            },
-            "deployUrl": "http://localhost:8084/"
+              "libraryTarget": "system"
+            }
           },
           "configurations": {
             "production": {
