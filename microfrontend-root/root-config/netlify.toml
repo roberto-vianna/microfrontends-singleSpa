@@ -3,6 +3,21 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/login"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/cliente"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/barbeiro"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/login/*"
   to = "https://login-agend-barber.netlify.app/:splat"
   status = 200
