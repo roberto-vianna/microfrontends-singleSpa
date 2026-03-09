@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <div id="microfrontend-container"></div>
+  <div id="root-container">
+    <div id="login"></div>
+    <div id="client-dashboard"></div>
+    <div id="barber-dashboard"></div>
   </div>
 </template>
 
