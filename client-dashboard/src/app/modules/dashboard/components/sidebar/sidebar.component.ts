@@ -89,6 +89,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-  window.location.href = "http://localhost:8081/login";
+  window.location.href = "/login";
 }
 }

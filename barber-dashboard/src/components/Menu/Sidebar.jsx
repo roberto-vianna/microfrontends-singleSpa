@@ -155,7 +155,7 @@ const Sidebar = () => {
 
         <button
           className="w-full py-1.5 bg-transparent border border-solid border-color_text text-color_text font-bold rounded-md transition-colors duration-300 hover:bg-zinc-800 flex items-center justify-center"
-          onClick={() => (window.location.href = "http://localhost:8081/login")}
+          onClick={() => (window.location.href = "/login")}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

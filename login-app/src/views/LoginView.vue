@@ -105,9 +105,9 @@ export default {
       }
       setLoggedUser(user);
       if (user.type === "cliente") {
-        window.location.href = "http://localhost:8081/cliente";
+        window.location.href = "/cliente";
       } else if (user.type === "barbeiro") {
-        window.location.href = "http://localhost:8081/barbeiro";
+        window.location.href = "/barbeiro";
       }
     },
     togglePasswordVisibility() {
