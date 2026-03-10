@@ -71,6 +71,7 @@
 <script>
 import { EventBus } from "@/utils/eventBus";
 import { findUser, setLoggedUser } from "@/utils/localStorage";
+import { navigateToUrl } from "single-spa";
 
 export default {
   data() {
@@ -105,9 +106,9 @@ export default {
       }
       setLoggedUser(user);
       if (user.type === "cliente") {
-        window.location.href = "/cliente";
+        navigateToUrl("/cliente");
       } else if (user.type === "barbeiro") {
-        window.location.href = "/barbeiro";
+        navigateToUrl("/barbeiro");
       }
     },
     togglePasswordVisibility() {
