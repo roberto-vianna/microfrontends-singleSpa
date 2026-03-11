@@ -18,24 +18,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import singleSpaReact from "single-spa-react";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
 import "./index.css";
 
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: (props) => (
-    <BrowserRouter basename="/barbeiro">
-      <App {...props} />
-    </BrowserRouter>
+  rootComponent: () => (
+    <div style={{ background: "#09090b", color: "#fff", padding: "20px" }}>
+      TESTE MICROFRONTEND BARBEIRO
+    </div>
   ),
   domElementGetter: () => document.getElementById("barber-dashboard"),
   errorBoundary(err, info, props) {
     return React.createElement(
       "div",
       { style: { padding: "16px" } },
-      "Erro ao carregar o dashboard do barbeiro."
+      "Erro ao carregar o dashboard do barbeiro new."
     );
   },
 });

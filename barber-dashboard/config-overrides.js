@@ -6,6 +6,11 @@ module.exports = {
     config.output.libraryTarget = "system";
     config.output.filename = "main.js";
     config.output.publicPath = "/barbeiro/";
+    config.optimization = {
+      splitChunks: false,
+      runtimeChunk: false,
+    };
+
     return config;
   },
 };
