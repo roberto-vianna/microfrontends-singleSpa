@@ -17,8 +17,14 @@
   force = true
 
 [[redirects]]
-  from = "/cliente/*.js"
-  to = "https://client-dashboard-mfe.netlify.app/:splat.js"
+  from = "/cliente/747.js"
+  to = "https://client-dashboard-mfe.netlify.app/747.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/cliente/948.js"
+  to = "https://client-dashboard-mfe.netlify.app/948.js"
   status = 200
   force = true
 
