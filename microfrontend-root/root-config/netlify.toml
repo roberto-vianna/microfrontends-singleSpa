@@ -2,13 +2,47 @@
   command = "npm run build"
   publish = "dist"
 
+# arquivos do login
+[[redirects]]
+  from = "/login/app.js"
+  to = "https://login-agend-barber.netlify.app/app.js"
+  status = 200
+  force = true
+
+# arquivos do cliente
+[[redirects]]
+  from = "/cliente/main.js"
+  to = "https://client-dashboard-mfe.netlify.app/main.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/cliente/*.js"
+  to = "https://client-dashboard-mfe.netlify.app/:splat.js"
+  status = 200
+  force = true
+
+# arquivos do barbeiro
+[[redirects]]
+  from = "/barbeiro/main.js"
+  to = "https://barber-dashboard-mfe.netlify.app/main.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/barbeiro/static/*"
+  to = "https://barber-dashboard-mfe.netlify.app/static/:splat"
+  status = 200
+  force = true
+
+# rotas SPA
 [[redirects]]
   from = "/login"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/login/"
+  from = "/login/*"
   to = "/index.html"
   status = 200
 
@@ -18,7 +52,7 @@
   status = 200
 
 [[redirects]]
-  from = "/cliente/"
+  from = "/cliente/*"
   to = "/index.html"
   status = 200
 
@@ -28,27 +62,9 @@
   status = 200
 
 [[redirects]]
-  from = "/barbeiro/"
+  from = "/barbeiro/*"
   to = "/index.html"
   status = 200
-
-[[redirects]]
-  from = "/login/*"
-  to = "https://login-agend-barber.netlify.app/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/cliente/*"
-  to = "https://client-dashboard-mfe.netlify.app/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/barbeiro/*"
-  to = "https://barber-dashboard-mfe.netlify.app/:splat"
-  status = 200
-  force = true
 
 [[redirects]]
   from = "/*"
