@@ -147,12 +147,10 @@ export default function GerenciarBarbeiros() {
   }, [users]);
 
   const filteredBarbers = useMemo(() => {
-    if (!loggedUser) return [];
-
     const q = String(query || "").toLowerCase().trim();
 
     return barbers.filter((b) => {
-      if (Number(b.id) === Number(loggedUser.id)) {
+      if (loggedUser?.id != null && Number(b.id) === Number(loggedUser.id)) {
         return false;
       }
 
