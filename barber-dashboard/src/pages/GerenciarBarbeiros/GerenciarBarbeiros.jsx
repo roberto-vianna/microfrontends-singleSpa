@@ -146,21 +146,24 @@ export default function GerenciarBarbeiros() {
       });
   }, [users]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+  const filteredBarbers = useMemo(() => {
+    if (!loggedUser) return [];
 
-    return barbers
-      .filter((b) => {
-        if (Number(b.id) === Number(loggedUser.id)) {
-          return false
-        }
-        if (!q) return true;
-        return (
-          String(b.fullName || "").toLowerCase().includes(q) ||
-          String(b.email || "").toLowerCase().includes(q)
-        );
-      });
-  }, [barbers, query, loggedUser.id]);
+    const q = String(query || "").toLowerCase().trim();
+
+    return barbers.filter((b) => {
+      if (Number(b.id) === Number(loggedUser.id)) {
+        return false;
+      }
+
+      if (!q) return true;
+
+      return (
+        String(b.fullName || "").toLowerCase().includes(q) ||
+        String(b.email || "").toLowerCase().includes(q)
+      );
+    });
+  }, [barbers, query, loggedUser?.id]);
 
   const isMaster = loggedUser?.type === "barbeiro" && loggedUser?.role === "master";
 
@@ -296,7 +299,7 @@ export default function GerenciarBarbeiros() {
               </thead>
 
               <tbody>
-                {filtered.map((b) => {
+                {filteredBarbers.map((b) => {
                   const waLink = b.telefone ? `https://wa.me/${b.telefone}` : null;
 
                   return (
@@ -404,7 +407,7 @@ export default function GerenciarBarbeiros() {
                   );
                 })}
 
-                {filtered.length === 0 && (
+                {filteredBarbers.length === 0 && (
                   <tr>
                     <td colSpan={5} className="px-6 py-10 text-center text-color_text">
                       Nenhum barbeiro encontrado.
