@@ -115,9 +115,23 @@ export default {
       this.passwordVisible = !this.passwordVisible;
     },
     googleLogin() {
-      this.email = 'robertobarber@gmail.com', this.password = '12345'
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (!users.length) {
+        EventBus.$emit("show-notification", {
+          message: "Não há nenhuma conta Google disponível. Crie um usuário primeiro.",
+          type: "error",
+        });
+        return;
+      }
+
+      const firstUser = users[0];
+
+      this.email = firstUser.email || "";
+      this.password = firstUser.password || "";
+
       EventBus.$emit("show-notification", {
-        message: "Dados preenchidos com sua conta Google, clique em 'Entrar' para continuar!",
+        message: "Dados preenchidos com a primeira conta cadastrada. Clique em 'Entrar' para continuar!",
         type: "success",
       });
     }
