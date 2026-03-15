@@ -3,13 +3,15 @@ const singleSpaAngularWebpack = require("single-spa-angular/lib/webpack").defaul
 module.exports = (config, options) => {
   const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
 
-  const isDev = options.configuration !== "production";
+  const isProduction =
+    process.env.CONTEXT === "production" ||
+    process.env.NODE_ENV === "production";
 
   singleSpaWebpackConfig.output.libraryTarget = "system";
   singleSpaWebpackConfig.output.chunkLoadingGlobal = "wpClientDashboard";
-  singleSpaWebpackConfig.output.publicPath = isDev
-    ? "http://localhost:8084/"
-    : "/cliente/";
+  singleSpaWebpackConfig.output.publicPath = isProduction
+    ? "/cliente/"
+    : "http://localhost:8084/";
 
   return singleSpaWebpackConfig;
 };
