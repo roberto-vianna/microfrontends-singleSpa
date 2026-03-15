@@ -17,8 +17,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "cross-env PORT=8083 react-app-rewired start",
     "build": "react-app-rewired build",
+    "build:local-mfe": "cross-env LOCAL_MFE=true react-app-rewired build",
+    "serve:local-mfe": "serve build -l 8083",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
@@ -44,9 +46,11 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.24",
+    "cross-env": "^10.1.0",
     "globals": "^17.3.0",
     "postcss": "^8.4.24",
     "react-app-rewired": "^2.2.1",
+    "serve": "^14.2.6",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.14"
   }

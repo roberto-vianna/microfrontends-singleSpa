@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:single-spa:client-dashboard": "ng build client-dashboard --configuration production",
-    "serve:single-spa:client-dashboard": "ng s --project client-dashboard --disable-host-check --port 8083 --live-reload false"
+    "build:single-spa:client-dashboard": "ng build client-dashboard --configuration production --base-href /cliente/",
+    "serve:single-spa:client-dashboard": "ng s --project client-dashboard --disable-host-check --port 8084 --live-reload false"
   },
   "private": true,
   "dependencies": {
