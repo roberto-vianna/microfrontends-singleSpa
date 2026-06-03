@@ -58,8 +58,9 @@ export const demoServices = [
   {
     id: 1772228244829,
     name: 'Cabelo e Barba',
+    durationMin: 45,
     price: 60,
-    duration: 45,
+    active: true,
     imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeOn3CjjaUe5aIQ3cqNMN4yIKyAcsoTpbiZA&s',
     createdAt: 1772228244829,
   },
