@@ -70,7 +70,7 @@
 
 <script>
 import { EventBus } from "@/utils/eventBus";
-import { findUser, setLoggedUser } from "@/utils/localStorage";
+import { findUser, setLoggedUser, findUserByEmail, initializeDemoData, } from "@/utils/localStorage";
 import { navigateToUrl } from "single-spa";
 
 export default {
@@ -115,23 +115,26 @@ export default {
       this.passwordVisible = !this.passwordVisible;
     },
     googleLogin() {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+      initializeDemoData();
 
-      if (!users.length) {
+      const demoClient = findUserByEmail("cliente.demo@gmail.com");
+
+      if (!demoClient) {
+        console.log("Usuários atuais:", JSON.parse(localStorage.getItem("users")));
+
         EventBus.$emit("show-notification", {
-          message: "Não há nenhuma conta Google disponível. Crie um usuário primeiro.",
+          message: "Cliente demo não encontrado.",
           type: "error",
         });
+
         return;
       }
 
-      const firstUser = users[0];
-
-      this.email = firstUser.email || "";
-      this.password = firstUser.password || "";
+      this.email = demoClient.email || "";
+      this.password = demoClient.password || "";
 
       EventBus.$emit("show-notification", {
-        message: "Dados preenchidos com a primeira conta cadastrada. Clique em 'Entrar' para continuar!",
+        message: "Dados preenchidos com a conta de demonstração. Clique em Entrar para continuar!",
         type: "success",
       });
     }
